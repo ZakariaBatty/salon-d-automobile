@@ -1,0 +1,41 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "salon d'automonile",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZakariaBatty/salon-d-automobile.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "js",
+    "mongoose",
+    "joi"
+  ],
+  "author": "zakaria",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZakariaBatty/salon-d-automobile/issues"
+  },
+  "homepage": "https://github.com/ZakariaBatty/salon-d-automobile#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.3",
+    "nodemailer": "^6.5.0",
+    "nodemon": "^2.0.7"
+  }
+}
