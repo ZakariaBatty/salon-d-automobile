@@ -3,14 +3,14 @@ const bcrypt = require('bcryptjs');
 
 const { Schema, model } = mongoose;
 
-const OwnerShema = new Schema(
+const ClientShema = new Schema(
   {
     firstName: { type: String, required: true, trim: true },
     lastName: { type: String, required: true, trim: true },
     cin: { type: String, required: true },
     email: { type: String, required: true, unique: true, trim: true },
-    rib: { type: Number, required: true },
     telephone: { type: String, required: true },
+    globalTries: { type: Number, default: 0 },
     salt: String,
     hashed_password: { type: String, required: true },
   },
@@ -18,7 +18,7 @@ const OwnerShema = new Schema(
 );
 
 // create virtual password and crypted password
-OwnerShema.virtual('password')
+ClientShema.virtual('password')
   .get(function () {
     return this._password;
   })
@@ -29,7 +29,7 @@ OwnerShema.virtual('password')
   });
 
 // compare password is err or is Match
-OwnerShema.methods.comparePassword = function (passwordToCheck, cb) {
+ClientShema.methods.comparePassword = function (passwordToCheck, cb) {
   bcrypt.compare(
     passwordToCheck,
     this.hashed_password,
@@ -39,4 +39,4 @@ OwnerShema.methods.comparePassword = function (passwordToCheck, cb) {
     }
   );
 };
-module.exports = model('Owner', OwnerShema);
+module.exports = model('Client', ClientShema);
