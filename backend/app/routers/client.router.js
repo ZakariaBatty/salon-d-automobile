@@ -8,9 +8,10 @@ const {
   reserveCar,
   EssaiVoiture,
 } = require('../controllers/client.controller');
-const { singin } = require('../controllers/auth');
+const { singin, signout, requireSignin } = require('../controllers/auth');
 
 router.post('/singin', singin);
+router.get('/signout', signout);
 router.post('/createClient', createClient);
 router.post('/reserver', reserveCar);
 router.post('/EssaiVoiture/:id', EssaiVoiture);
