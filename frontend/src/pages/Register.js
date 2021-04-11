@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, connect } from 'react-redux';
-import createClient from '../redux/actions/clientActions';
+import { createClient } from '../redux/actions/clientActions';
 import { Redirect } from 'react-router-dom';
 
 function Register({ clientError, clientSuccess }) {
@@ -22,6 +22,7 @@ function Register({ clientError, clientSuccess }) {
     }
     if (clientSuccess) {
       setSuccess(clientSuccess);
+      dispatch({ type: 'TOGGLE_SUCCESS' });
     }
   }, [clientError, clientSuccess]);
 
@@ -127,7 +128,7 @@ function Register({ clientError, clientSuccess }) {
   );
 }
 
-const mapStateToProps = ({ client: {clientError, clientSuccess} }) => ({
+const mapStateToProps = ({ client: { clientError, clientSuccess } }) => ({
   clientError,
   clientSuccess,
 });

@@ -18,6 +18,8 @@ const clientReducer = (state = initialState, action) => {
       return {
         ...state,
         clients: action.payload,
+        clientError: null,
+        clientSuccess: !state.clientSuccess,
       };
     case clientTypes.REGISTER:
       return {
@@ -47,7 +49,12 @@ const clientReducer = (state = initialState, action) => {
     case clientTypes.CLIENT_ERROR:
       return {
         ...state,
-        cleintError: action.payload,
+        clientError: action.payload,
+      };
+    case 'TOGGLE_SUCCESS':
+      return {
+        ...state,
+        clientSuccess: !state.clientSuccess,
       };
     default:
       return state;

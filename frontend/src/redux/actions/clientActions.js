@@ -1,7 +1,8 @@
 import clientTypes from '../types/clientTypes';
 import axios from 'axios';
+import { saveClientTolocalStorage, isLogged } from '../../helpers/auth';
 
-const createClient = (client) => {
+export const createClient = (client) => {
   return (dispatch) => {
     axios
       .post('http://localhost:3300/createClient', client)
@@ -12,6 +13,7 @@ const createClient = (client) => {
             payload: res.data.error,
           });
         } else {
+          saveClientTolocalStorage(res.data);
           dispatch({
             type: clientTypes.REGISTER,
           });
@@ -21,4 +23,32 @@ const createClient = (client) => {
   };
 };
 
-export default createClient;
+export const login = (client) => {
+  return (dispatch) => {
+    axios
+      .post('http://localhost:3300/singin', client)
+      .then((res) => {
+        if (res.data.error) {
+          dispatch({
+            type: clientTypes.CLIENT_ERROR,
+            payload: res.data.error,
+          });
+        } else {
+          dispatch({
+            type: clientTypes.AUTH,
+            payload: res.data,
+          });
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+};
+
+export const authCheck = (req, res) => {
+  return (dispatch) => {
+    dispatch({
+      type: clientTypes.CHECK_AUTH,
+      payload: isLogged() ? { user: isLogged().user } : null,
+    });
+  };
+};

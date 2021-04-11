@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBar from './components/NavBar';
+import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 
@@ -9,6 +10,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path="/" exact component={Home} />
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
       </Switch>
